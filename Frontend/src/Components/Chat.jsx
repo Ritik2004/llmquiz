@@ -3,13 +3,14 @@ import React, { useState } from 'react'
 const Chat = ({res, loading}) => {
   const[selectedOption, setSelectedOption] = useState({});
   const[answered, setAnswered] = useState("");
-
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const handleSubmit = () => {
     let score = 0;
     res.answer.forEach((q, index) => {
       if (selectedOption[index] === q.answer) score++;
     });
     setAnswered(`Your Score: ${score}/${res.answer.length}`);
+    setIsSubmitted(true);
   };
 
   // 🔥 SHOW LOADING STATE
@@ -104,7 +105,7 @@ const Chat = ({res, loading}) => {
             {answered}
           </div>
 
-          {answered && res.answer.map((item, index) => (
+          {isSubmitted && res.answer.map((item, index) => (
             <span key={index} style={{color: "white", marginRight: "10px"}}>
               {item.answer}
             </span>

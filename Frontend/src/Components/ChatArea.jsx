@@ -115,14 +115,16 @@ const ChatArea = () => {
           }}
         />
         <button onClick={sendQuestion} style={{padding: "12px 16px", borderRadius: "8px", border: "none", backgroundColor: "#2563eb", color: "white", fontSize: "16px", cursor: "pointer"}} >start</button>
-        <button onClick={() => setRes({})} style={{padding: "12px 16px", borderRadius: "8px", border: "none", backgroundColor: "#10b981", color: "white", fontSize: "16px", cursor: "pointer"}}>Play Again</button>
+        <button onClick={() => { setRes({}); setInput(""); }} style={{padding: "12px 16px", borderRadius: "8px", border: "none", backgroundColor: "#10b981", color: "white", fontSize: "16px", cursor: "pointer"}}>Play Again</button>
       </div>
     <div style={{
       flex: 1,
       overflowY: "auto",
       padding: "0 20px 20px 20px"
     }}>
-      <Chat res={res} loading={loading}/>
+       {res.answer && res.answer.length > 0 && (
+    <Chat key={JSON.stringify(res)} res={res} loading={loading}/>
+  )}
     </div>
     </div>
   )
