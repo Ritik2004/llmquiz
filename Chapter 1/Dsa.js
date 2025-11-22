@@ -1,6 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
-
-const ai = new GoogleGenAI({apiKey:"AIzaSyDCFuoxsK5o4T_mlfqcYG950C0IvZYrczA"});
+import dotenv from "dotenv";
+dotenv.config();
+const ai = new GoogleGenAI({apiKey:process.env.LLM_KEY});
 const QUIZ_SYSTEM_INSTRUCTION = `
 You are an AI Quiz Generator.
 Your responsibility is to generate quiz questions based on user request.
@@ -50,4 +51,3 @@ export async function getAnser(inputText) {
   const cleaned = raw.replace(/```json|```/g, "").trim();
   return JSON.parse(cleaned);
 }
-
