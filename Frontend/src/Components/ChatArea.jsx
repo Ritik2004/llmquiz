@@ -6,7 +6,7 @@ const ChatArea = () => {
   const [res, setRes] = useState({});
   const[loading,setLoading]=useState(false);
   const sendQuestion = async () => {
-   const data = await fetch("http://localhost:3000/data",{
+   const data = await fetch("https://llmquiz-backend.onrender.com/data",{
     method: "POST",
     headers: {
       "Content-Type": "application/json"
