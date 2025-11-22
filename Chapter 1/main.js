@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3000;
 import { getAnser } from './Dsa.js';
 app.use(cors(
   {
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173','https://llmquiz-frontend.onrender.com' ],
     methods: ['GET','POST'],
     credentials: true,
     optionsSuccessStatus: 200
