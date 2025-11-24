@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Chat from './Chat.jsx';
 import {io} from 'socket.io-client';
 
-const socket = io("http://localhost:3000");
+const socket = io("https://llmquiz-frontend.onrender.com");
 socket.on("connect",()=>{
   console.log("Connected to server with ID:", socket.id);
 });
@@ -59,7 +59,7 @@ const [leaderboard, setLeaderboard] = useState([]);
   // Solo quiz API call
   const sendQuestion = async () => {
     setLoading(true);
-    const data = await fetch("http://localhost:3000/data", {
+    const data = await fetch("https://llmquiz-frontend.onrender.com/data", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ques: input })
