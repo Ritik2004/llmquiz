@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Chat = ({res, loading}) => {
+const Chat = ({res, loading, socket, gameCode}) => {
   const[selectedOption, setSelectedOption] = useState({});
   const[answered, setAnswered] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -9,6 +9,12 @@ const Chat = ({res, loading}) => {
     res.answer.forEach((q, index) => {
       if (selectedOption[index] === q.answer) score++;
     });
+     socket.emit("submit_answer", {
+    roomCode: gameCode, // you'll need to pass this as prop
+    playerId: socket.id,
+    score: score,
+    totalQuestions: res.answer.length
+  });
     setAnswered(`Your Score: ${score}/${res.answer.length}`);
     setIsSubmitted(true);
   };
