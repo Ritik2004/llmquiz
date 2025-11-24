@@ -2,10 +2,17 @@ import express from 'express';
 import cors from 'cors';
 import http from 'http';
 import {Server} from 'socket.io';
+import dotenv from 'dotenv';
 import { getAnser } from './Dsa.js';
+
+// Load environment variables
+dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 const server = http.createServer(app);
+
+console.log('Starting server on port:', PORT);
+console.log('Environment:', process.env.NODE_ENV || 'development');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(
