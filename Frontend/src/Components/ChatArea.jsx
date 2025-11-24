@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Chat from './Chat.jsx';
 import {io} from 'socket.io-client';
 
-const socket = io("https://llmquiz-frontend.onrender.com");
+const socket = io(import.meta.env.DEV ? "http://localhost:3000" : "https://llmquiz-backend.onrender.com");
 socket.on("connect",()=>{
   console.log("Connected to server with ID:", socket.id);
 });
